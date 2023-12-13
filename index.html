@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>UCT Starlings</title>  
+        <meta charset="utf-8" />
+        <!-- bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <meta name="description" content="UCT Starlings project" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- leaflet css -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+        <!-- leaflet js -->
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+ integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+ crossorigin=""></script>
+
+ <link rel="icon" type="image/x-icon" href="birdFav.png">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+
+<style>
+body {
+  background-color: #b0ffc042;
+}
+  
+  #leaflet-map {
+    width: 100%;
+    height: 800px;
+    min-height: 100%;
+    max-height: 75vh;
+  }
+
+  /* z-index for for navbar */
+  .leaflet-top,
+  .leaflet-bottom {
+    z-index: 999;
+  }
+
+  #details {
+    background-color: #f9f9f9;
+    max-height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  #details .help {
+    flex-direction: column;
+    height: 100%;
+    min-height: 200px;
+  }
+
+  #details .help .box {
+    height: 50%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  #details .project-details {
+    height: 100%;
+  }
+
+  #details svg {
+    width: 40px;
+  }
+
+  #details .return-to-list,
+  .results .reset-filter,
+  .clear-filter {
+    cursor: pointer;
+  }
+
+  #details .website-url svg,
+  #details .file-url svg,
+  #details .return-to-list svg {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+    margin-top: -4px;
+  }
+
+  #details .description,
+  #details table {
+    font-size: 1rem;
+  }
+
+  #details .col-img {
+    justify-content: flex-end;
+    flex-direction: column;
+  }
+
+  #details img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-bottom-left-radius: .25rem;
+  }
+
+  @media(min-width: 992px) {
+    #details {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-right: none !important;
+      height: 100%;
+    }
+
+    #leaflet-map {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+  }
+
+  #details:not(.show-project) .project-details,
+  #details:not(.no-results) .no-results,
+  #details:not(.results) .results,
+  #details.show-project .help,
+  #details.no-results .help,
+  #details.results .help {
+    display: none !important;
+  }
+
+/*
+  .results-table tr {
+    color: #007bff;
+    cursor: pointer;
+  }
+
+  .results-table tr:hover {
+    color: #0056b3
+  }
+*/
+</style>
+
+    </head>
+
+    <body>
+        
+<!--
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light border-bottom sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id=""  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Water map</a>
+            <div class="dropdown-menu" aria-labelledby="">
+              
+<a class="dropdown-item" href="/water-map/watery-relations-museum/">Cape Town Museum of Watery Relations</a>
+
+<a class="dropdown-item" href="/water-map/examples-of-water-sensitive-design-projects/">Examples of water sensitive design projects</a>
+
+            </div>
+          </li>
+          
+        
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/water-sensitive-design-training/">WSD training and events</a>
+          </li>
+          
+        
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/Projects/">Academic research projects</a>
+          </li>
+          
+        
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/contact-us/">Contact us</a>
+          </li>
+          
+        
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id=""  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
+            <div class="dropdown-menu" aria-labelledby="">
+              
+<a class="dropdown-item" href="/resources/key-concepts/">Definition of key concepts</a>
+
+<a class="dropdown-item" href="/resources/south-african-guidelines-and-policies/">South African guidelines and policies</a>
+
+<a class="dropdown-item" href="/resources/useful-websites/">Useful websites</a>
+
+            </div>
+          </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+-->
+        <!--
+
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light border-bottom sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        
+      </ul>
+    </div>
+  </div>
+</nav>-->
+<!--
+            <nav class="breadcrumb-wrap" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 container">
+                    
+                        
+                    
+                        
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        
+                    
+                    <li class="breadcrumb-item active" aria-current="page">Water map</li>
+                </ol>
+            </nav>
+        
+        -->
+        
+
+<div class="container py-4">
+  
+  <h2><b>Red-winged Starling sightings map</b></h2>
+
+  <p></p><p></p><h4><b>Welcome! </b>This webpage facilitates the tracking and monitoring of Red-winged starlings research on campus, through the  <a href="https://science.uct.ac.za/fitzpatrick">FitzPatrick Institute of African Ornithology</a>, which forms part of the <a href="https://science.uct.ac.za/department-biological-sciences">Biological Sciences Department</a></h4>
+<p></p><p></p>
+
+  <div class="row filters my-2">
+    <div class="col-md-6 col-lg-4 mb-2">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Search</div>
+        </div>
+        <input class="form-control search filter" type="text" name="search" placeholder="Search by ring code">
+      </div>
+    </div>
+
+    <!--
+    <div class="col-md-6 col-lg-4 mb-2">
+      <label class="sr-only" for="type">Type</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Type</div>
+        </div>
+        <select class="custom-select type filter">
+          <option value="all" selected>Any</option>
+          
+            
+              <option value="Community group">Community group</option>
+            
+          
+            
+              <option value="Company/business">Company/business</option>
+            
+          
+            
+              <option value="Consultant">Consultant</option>
+            
+          
+            
+          
+            
+              <option value="Research entity">Research entity</option>
+            
+          
+            
+              <option value="School group">School group</option>
+            
+          
+            
+              <option value="Water-related project interest group">Water-related project interest group</option>
+            
+          
+            
+              <option value="Water sensitive design implementation">Water sensitive design implementation</option>
+            
+          
+            
+              <option value="Water story">Water story</option>
+            
+          
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+    
+    </div>
+    <div class="col-md-6 col-lg-4 mb-2">
+      <label class="sr-only" for="aim">Aim</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Aim</div>
+        </div>
+        <select class="custom-select aim filter">
+          <option value="all" selected>Any</option>
+
+          
+            
+              <option value="Advocacy">Advocacy</option>
+            
+          
+            
+              <option value="Education">Education</option>
+            
+          
+            
+              <option value="Infrastructure/implementation">Infrastructure/implementation</option>
+            
+          
+            
+          
+            
+              <option value="Social/Leisure">Social/Leisure</option>
+            
+          
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+-->
+
+  <div class="row mb-4">
+    <div class="col-lg-4 pr-lg-0 mb-4 mb-lg-0">
+      <div class="border rounded position-relative" id="details">
+        
+
+        <div class="project-details row">
+          <div class="col-12">
+            <div class="p-3">
+              <h3 class="name"></h3>
+              <div class="mb-2">
+                <span class="type badge badge-dark"></span>
+                <span class="aim badge badge-dark"></span>
+                <span class="link badge badge-dark"></span>
+              </div>
+
+              <a class="btn btn-primary website-url mb-2" href="" target="_blank" hidden>
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#fff"><path d="M301.148 394.702l-79.2 79.19c-50.778 50.799-133.037 50.824-183.84 0-50.799-50.778-50.824-133.037 0-183.84l79.19-79.2a132.833 132.833 0 0 1 3.532-3.403c7.55-7.005 19.795-2.004 20.208 8.286.193 4.807.598 9.607 1.216 14.384.481 3.717-.746 7.447-3.397 10.096-16.48 16.469-75.142 75.128-75.3 75.286-36.738 36.759-36.731 96.188 0 132.94 36.759 36.738 96.188 36.731 132.94 0l79.2-79.2.36-.36c36.301-36.672 36.14-96.07-.37-132.58-8.214-8.214-17.577-14.58-27.585-19.109-4.566-2.066-7.426-6.667-7.134-11.67a62.197 62.197 0 0 1 2.826-15.259c2.103-6.601 9.531-9.961 15.919-7.28 15.073 6.324 29.187 15.62 41.435 27.868 50.688 50.689 50.679 133.17 0 183.851zm-90.296-93.554c12.248 12.248 26.362 21.544 41.435 27.868 6.388 2.68 13.816-.68 15.919-7.28a62.197 62.197 0 0 0 2.826-15.259c.292-5.003-2.569-9.604-7.134-11.67-10.008-4.528-19.371-10.894-27.585-19.109-36.51-36.51-36.671-95.908-.37-132.58l.36-.36 79.2-79.2c36.752-36.731 96.181-36.738 132.94 0 36.731 36.752 36.738 96.181 0 132.94-.157.157-58.819 58.817-75.3 75.286-2.651 2.65-3.878 6.379-3.397 10.096a163.156 163.156 0 0 1 1.216 14.384c.413 10.291 12.659 15.291 20.208 8.286a131.324 131.324 0 0 0 3.532-3.403l79.19-79.2c50.824-50.803 50.799-133.062 0-183.84-50.802-50.824-133.062-50.799-183.84 0l-79.2 79.19c-50.679 50.682-50.688 133.163 0 183.851z"></path></svg>
+                
+              </a>
+
+              <a class="btn btn-primary file-url mb-2" href="" target="_blank" hidden>
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#fff"><path d="M369.9 97.98L286.02 14.1c-9-9-21.2-14.1-33.89-14.1H47.99C21.5.1 0 21.6 0 48.09v415.92C0 490.5 21.5 512 47.99 512h288.02c26.49 0 47.99-21.5 47.99-47.99V131.97c0-12.69-5.1-24.99-14.1-33.99zM256.03 32.59c2.8.7 5.3 2.1 7.4 4.2l83.88 83.88c2.1 2.1 3.5 4.6 4.2 7.4h-95.48V32.59zm95.98 431.42c0 8.8-7.2 16-16 16H47.99c-8.8 0-16-7.2-16-16V48.09c0-8.8 7.2-16.09 16-16.09h176.04v104.07c0 13.3 10.7 23.93 24 23.93h103.98v304.01zM208 216c0-4.42-3.58-8-8-8h-16c-4.42 0-8 3.58-8 8v88.02h-52.66c-11 0-20.59 6.41-25 16.72-4.5 10.52-2.38 22.62 5.44 30.81l68.12 71.78c5.34 5.59 12.47 8.69 20.09 8.69s14.75-3.09 20.09-8.7l68.12-71.75c7.81-8.2 9.94-20.31 5.44-30.83-4.41-10.31-14-16.72-25-16.72H208V216zm42.84 120.02l-58.84 62-58.84-62h117.68z"></path></svg>
+                
+              </a>
+
+              <div class="description"></div>
+            </div>
+
+            <div class="px-3 mb-3">
+              <div class="btn btn-primary return-to-list">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#fff"><path d="M229.9 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L94.569 282H436c6.627 0 12-5.373 12-12v-28c0-6.627-5.373-12-12-12H94.569l155.13-155.13c4.686-4.686 4.686-12.284 0-16.971L229.9 38.101c-4.686-4.686-12.284-4.686-16.971 0L3.515 247.515c-4.686 4.686-4.686 12.284 0 16.971L212.929 473.9c4.686 4.686 12.284 4.686 16.971-.001z"/></svg>
+                Return to list
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-img d-none d-lg-flex">
+            <img class="photo" src="">
+          </div>
+        </div>
+
+        <div class="results">
+          <div class="p-3">
+            <h3 class="mb-0"><span id="results-count"></span> <span id="results-count-plural">sightings</h3>
+          </div>
+
+          <table class="table results-table mb-0">
+            <tbody></tbody>
+          </table>
+
+          <div class="px-3 my-3 reset-filter-container" hidden>
+            <div class="btn btn-primary reset-filter">Show all sightings</div>
+          </div>
+        </div>
+
+        <div class="no-results p-3">
+          <h3>No results</h3>
+          <div class="btn btn-primary reset-filter mt-4">Clear filter</div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="col-lg-8 pl-lg-0">
+      <div id="leaflet-map" class="rounded"></div>
+    </div>
+
+</div>
+
+      
+<footer class="">
+  
+
+<div class="container">
+  <div class="row">
+    <div class="col-md col-lg-8">
+      <h4>FitzPatrick Institute of African Ornithology</h4>
+
+      John Day Zoology Building, Upper Campus <br>
+      University of Cape Town <br>
+      <a href="mailto:fitz@uct.ac.za">fitz@uct.ac.za</a>
+    </div>
+    <div class="col-md p-4 p-lg-0 col-lg-4 d-flex align-items-center">
+      <img width="150vw" class="footer-logo" src="fitz_logo.png">
+    </div>
+  </div>
+</div>
+
+</footer>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/static/js/wsud.js"></script>
+
+        
+<!-- leaflet js -->
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+<script>
+// map var -----------------------------------------------------------------------------------------------------------------------------
+  var map = L.map("leaflet-map").setView([-33.95608517289068, 18.461008169660417], 20);
+
+  // add basemap  -------------------------------------------------------------------------------------------------------------------------------
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+  
+  L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+      attribution: "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>",
+      maxZoom: 18,
+      id: "mapbox/streets-v11",
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: "pk.eyJ1IjoicGVuZ3VpbmNvbGxlY3RpdmUiLCJhIjoiY2tlOGViNmdkMHZ1dDJybWlwaTFxaXk0NiJ9.vC8i8ciFlyG0qJyzTtnLcg",
+  }).addTo(map);
+
+
+
+  // define icons  -----------------------------------------------------------------------------------------------------------------
+  var bird = L.icon({
+    iconUrl: "birdbgr.png",
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  var egg = L.icon({
+    iconUrl: "eggbgr1.png",
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [15, 25],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  var unknown = L.icon({
+    iconUrl: "questionbgr.png",
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [20, 30],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  // define bird sightings --------------------------------------------------------------------------------------------------------
+  
+    const entry_1 = L.marker([-33.957096022743414, 18.461944479076145], {
+      "icon": egg,
+      "properties": {
+        "name": "XMEE",
+        "description": "18/11/23, with 1st Great Grandchicks",
+      },
+    });
+  
+    const entry_2 = L.marker([-33.96008424171533, 18.46023279636653], {
+      "icon": bird,
+      "properties": {
+        "name": "WMOY & XMGG",
+        "description": "28/11/23, collecting nesting material",
+      },
+    });
+
+    const entry_3 = L.marker([-33.95479885219124, 18.4605345673696], {
+      "icon": egg,
+      "properties": {
+        "name": "RMGY",
+        "description": "29/11/23, with mate and 2 unringed fledgies",
+      },
+    });
+
+    const entry_4 = L.marker([-33.95563958030307, 18.460441418555686], {
+      "icon": bird,
+      "properties": {
+        "name": "XMBB",
+        "description": "01/12/23",
+      },
+    });
+
+    const entry_5 = L.marker([-33.95684311554778, 18.45982219266616], {
+      "icon": egg,
+      "properties": {
+        "name": "RMOV",
+        "description": "01/12/23, with 2 fledgies ",
+      },
+    });
+
+    const entry_6 = L.marker([-33.957981372201125, 18.45988289636622], {
+      "icon": bird,
+      "properties": {
+        "name": "WMWG",
+        "description": "01/12/23",
+      },
+    });
+
+    const entry_7 = L.marker([-33.957937485568614, 18.46200212581338], {
+      "icon": bird,
+      "properties": {
+        "name": "XMRG & WMGY",
+        "description": "01/12/23",
+      },
+    });
+
+    const entry_8 = L.marker([-33.957426652261596, 18.46130065073413], {
+      "icon": bird,
+      "properties": {
+        "name": "GMVG",
+        "description": "02/12/23, enjoying a muffin wrapper...",
+      },
+    });
+
+    const entry_9 = L.marker([-33.95657384178455, 18.46154432581411], {
+      "icon": bird,
+      "properties": {
+        "name": "XMNN & WMRR",
+        "description": "5/12/23, enjoying Bio. lectures",
+      },
+    });
+
+    const entry_10 = L.marker([-33.956538010377386, 18.460701037470567], {
+      "icon": egg,
+      "properties": {
+        "name": "RMRB & GMOW",
+        "description": "09/12/23, with 3 fledglings",
+      },
+    });
+
+    const entry_11 = L.marker([-33.95575043932574, 18.460939455234254], {
+      "icon": egg,
+      "properties": {
+        "name": "YMYX & BMWY",
+        "description": "09/12/23, with 2 fledglings",
+      },
+    });
+
+    const entry_12 = L.marker([-33.95575043932574, 18.460939455234254], {
+      "icon": bird,
+      "properties": {
+        "name": "OMYB",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_13 = L.marker([-33.95575225690106, 18.46093616835744], {
+      "icon": bird,
+      "properties": {
+        "name": "NMYY",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_14 = L.marker([-33.95889249792201, 18.460423355261522], {
+      "icon": bird,
+      "properties": {
+        "name": "GMOP",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_15 = L.marker([-33.95889249792201, 18.460423355261522], {
+      "icon": bird,
+      "properties": {
+        "name": "RMOW",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_16 = L.marker([-33.95889249792201, 18.460423355261522], {
+      "icon": bird,
+      "properties": {
+        "name": "XMBW (yn)",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_17 = L.marker([-33.95889249792201, 18.460423355261522], {
+      "icon": bird,
+      "properties": {
+        "name": "OMXW",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_18 = L.marker([-33.95889249792201, 18.460423355261522], {
+      "icon": bird,
+      "properties": {
+        "name": "OMWR",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_19 = L.marker([-33.95889249792201, 18.460423355261522], {
+      "icon": bird,
+      "properties": {
+        "name": "WMVV",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_20 = L.marker([-33.958285441751606, 18.460328455261262], {
+      "icon": bird,
+      "properties": {
+        "name": "XMYY",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_21 = L.marker([-33.958285441751606, 18.460328455261262], {
+      "icon": bird,
+      "properties": {
+        "name": "BMOV",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_22 = L.marker([-33.95932368555046, 18.46045469636655], {
+      "icon": bird,
+      "properties": {
+        "name": "RMBW",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_23 = L.marker([-33.95932368555046, 18.46045469636655], {
+      "icon": bird,
+      "properties": {
+        "name": "OMWR",
+        "description": "09/12/23",
+      },
+    });
+
+    const entry_24 = L.marker([-33.956533249246924, 18.459784570025903], {
+      "icon": bird,
+      "properties": {
+        "name": "RMOV",
+        "description": "10/12/23",
+      },
+    });
+
+    const entry_25 = L.marker([-33.957289421052565, 18.460738692471676], {
+      "icon": bird,
+      "properties": {
+        "name": "M2 (YN)",
+        "description": "10/12/23, with parents",
+      },
+    });
+
+    const entry_26 = L.marker([-33.95777224176022, 18.4608615258141], {
+      "icon": bird,
+      "properties": {
+        "name": "YMRY",
+        "description": "10/12/23",
+      },
+    });
+
+    const entry_27 = L.marker([-33.95985654729932, 18.45956983194778], {
+      "icon": bird,
+      "properties": {
+        "name": "WMRV",
+        "description": "13/12/23",
+      },
+    });
+
+    const entry_28 = L.marker([-33.95704129796877, 18.461157296366196], {
+      "icon": bird,
+      "properties": {
+        "name": "XmM2 (YN)",
+        "description": "13/12/23",
+      },
+    });
+
+    const entry_29 = L.marker([-33.95539384180825, 18.46253276691855], {
+      "icon": egg,
+      "properties": {
+        "name": "GMOW, RMRV",
+        "description": "13/12/23, with three fledglings",
+      },
+    });
+
+    const entry_30 = L.marker([-33.95538438632981, 18.462510638693647], {
+      "icon": bird,
+      "properties": {
+        "name": "GMRV",
+        "description": "13/12/23",
+      },
+    });
+
+    const entry_31 = L.marker([-33.95538438632981, 18.462510638693647], {
+      "icon": bird,
+      "properties": {
+        "name": "XMXX",
+        "description": "13/12/23",
+      },
+    });
+
+
+    const entry_32 = L.marker([-33.956670711204836, 18.461870361443804], {
+      "icon": bird,
+      "properties": {
+        "name": "XMEE",
+        "description": "13/12/23",
+      },
+    });
+
+    const entry_33 = L.marker([-33.95737309796031, 18.462220596366198], {
+      "icon": bird,
+      "properties": {
+        "name": "GMWY",
+        "description": "13/12/23",
+      },
+    });
+
+    
+    const entry_34 = L.marker([-33.95737309796031, 18.462220596366198], {
+      "icon": bird,
+      "properties": {
+        "name": "XMRG",
+        "description": "13/12/23",
+      },
+    });
+
+    const entry_35 = L.marker([-33.95918039239116, 18.460733811829176], {
+      "icon": egg,
+      "properties": {
+        "name": "XMVV",
+        "description": "13/12/23, with two fledlings",
+      },
+    });
+
+    
+    const entry_36 = L.marker([-33.95918039239116, 18.460733811829176], {
+      "icon": bird,
+      "properties": {
+        "name": "OMWR",
+        "description": "13/12/23",
+      },
+    });
+
+    const entry_37 = L.marker([-33.9594058470075, 18.459248716465964], {
+      "icon": bird,
+      "properties": {
+        "name": "XmKp (YN)",
+        "description": "13/12/23, with parents",
+      },
+    });
+
+    const entry_38 = L.marker([-33.95843849793216, 18.45934779636656], {
+      "icon": bird,
+      "properties": {
+        "name": "OMWY, XMWB, K3, K4",
+        "description": "13/12/23",
+      },
+    });
+
+
+    const entry_39 = L.marker([-33.95857625325565, 18.459999527997248], {
+      "icon": unknown,
+      "properties": {
+        "name": "home"
+      },
+    });
+  
+
+  const allEntries = [
+    
+      entry_1,
+    
+      entry_2,
+    
+      entry_3,
+
+      entry_4,
+
+      entry_5,
+
+      entry_6,
+
+      entry_7,
+
+      entry_8,
+
+      entry_9,
+
+      entry_10,
+
+      entry_11,
+
+      entry_12,
+
+      entry_13,
+
+      entry_14,
+
+      entry_15,
+
+      entry_16,
+
+      entry_17,
+
+      entry_18,
+
+      entry_19,
+
+      entry_20,
+
+      entry_21,
+
+      entry_22,
+
+      entry_23,
+
+      entry_24,
+
+      entry_25,
+
+      entry_26,
+
+      entry_27,
+
+      entry_28,
+
+      entry_29,
+
+      entry_30,
+
+      entry_31,
+
+      entry_32,
+
+      entry_33,
+
+      entry_34,
+
+      entry_35,
+
+      entry_36,
+
+      entry_37,
+
+      entry_38,
+
+      entry_39,
+
+  ];
+
+  // function when selecting a marker
+  function selectMarker(e) {
+    let properties = e.sourceTarget.options.properties;
+
+    $("#details").addClass("show-project").removeClass("no-results results");
+
+    $(".project-details .name").text(properties.name)
+    $(".project-details .description").html(properties.description)
+
+    $(".project-details .type").text(properties.type)
+    $(".project-details .aim").text(properties.aim)
+
+    if (properties.website_url.length > 5) {
+      $(".project-details .website-url").attr("href", properties.website_url).removeAttr("hidden")
+    } else {
+      $(".project-details .website-url").attr("hidden", "hidden")
+    }
+
+    if (properties.file) {
+      $(".project-details .file-url").attr("href", properties.file).removeAttr("hidden")
+    } else {
+      $(".project-details .file-url").attr("hidden", "hidden")
+    }
+
+    let linkText;
+    if (properties.link == "cop") {
+      linkText = "COP linked"
+    } else if (properties.link == "museum") {
+      linkText = "Museum linked"
+    }
+
+    $(".project-details .link").text(linkText);
+
+    $(".project-details img").attr("src", properties.image)
+  }
+
+  // unselect project and return to list
+  function unselectMarker() {
+    $("#details").removeClass("show-project").addClass("results");
+    $(".leaflet-tooltip").remove();
+  }
+
+  // button to unselect marker and return to list
+  $(".return-to-list").click(function() {
+    unselectMarker();
+    filterMarkers()
+  })
+
+  // make a feature group with all listings and add it to the map
+  const allMarkers = L.featureGroup(allEntries).bindTooltip(function(layer) {return String(layer.options.properties.name)}).on("click", selectMarker);
+
+  var clusteredMarkers = L.markerClusterGroup();
+  clusteredMarkers.addLayer(allMarkers);
+  map.addLayer(clusteredMarkers);
+
+  var filteredLayer = false;
+  var clusteredFilteredMarkers = false;
+
+  // function to show filtered items on the map
+  function filterMarkers() {
+    // if a filtered layer exists, remove it from the map
+    // if not, remove all markers
+    if (filteredLayer != false) {
+      clusteredFilteredMarkers.removeFrom(map)
+    } else {
+      clusteredMarkers.removeFrom(map)
+    };
+
+    // check what the user has selected in the dropdowns
+    let search = $(".filters input.search").val()
+    let type = $(".filters select.type").val()
+    let aim = $(".filters select.aim").val()
+
+    let filteredEntries = allEntries;
+
+    if (search != "") {
+      filteredEntries = filteredEntries.filter(entry => entry.options.properties.name.toUpperCase().includes(search.toUpperCase()));
+    }
+
+    if (type != "all") {
+      filteredEntries = filteredEntries.filter(entry => entry.options.properties.type == type);
+    }
+
+    if (aim != "all") {
+      filteredEntries = filteredEntries.filter(entry => entry.options.properties.aim == aim);
+    }
+
+    if (filteredEntries.length > 0) {
+      $("#details").removeClass("no-results show-project").addClass("results");
+
+      $("#results-count").text(filteredEntries.length)
+      if (filteredEntries.length == 1) {
+        $("#results-count-plural").text("Sightings")
+      } else {
+        $("#results-count-plural").text("Sightings")
+      }
+
+      $(".results-table tbody").html("");
+
+      filteredLayer = L.featureGroup(filteredEntries).bindTooltip(function(layer) {return String(layer.options.properties.name)});
+
+      clusteredFilteredMarkers = L.markerClusterGroup();
+      clusteredFilteredMarkers.addLayer(filteredLayer);
+      map.addLayer(clusteredFilteredMarkers);
+
+      $(filteredLayer.getLayers()).each(function() {
+        $(".results-table tbody").append("<tr class='listed-project' data-id='" + this._leaflet_id + "'><td>" + this.options.properties.name + "</td><tr>");
+      })
+
+      map.fitBounds(filteredLayer.getBounds())
+    } else {
+      noFilterResults()
+    }
+
+    if (filteredEntries.length < 289) {
+      $(".reset-filter-container").removeAttr("hidden")
+    } else {
+      $(".reset-filter-container").attr("hidden", "hidden")
+    }
+  }
+
+  // run filter whenever one of the dropdown filters changes
+  $(".filters select").change(function() {
+    filterMarkers()
+  })
+
+  $(".filters .search").keyup(function() {
+    filterMarkers();
+  })
+
+  // function to run when there are no filter matches
+  function noFilterResults() {
+    $("#details").addClass("no-results").removeClass("show-project results");
+  }
+
+  // clear all filters with button
+  $(".reset-filter").click(function() {
+    $("select.filter").val("all")
+    $(".search.filter").val("")
+    filterMarkers();
+  })
+
+  // click on project in the list to select the marker
+  // $(document.body).on("click", ".listed-project", function(event) {
+    // let marker = $(this).data("id");
+    // $(filteredLayer._layers[marker]._icon).click();
+  // });
+
+  // set the bounds of the map around all content
+  map.fitBounds(allMarkers.getBounds())
+</script>
+
+    </body>
+</html>
