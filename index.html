@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <!-- bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <meta name="description" content="UCT Starlings project" />
+        <meta name="type" content="UCT Starlings project" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- leaflet css -->
@@ -17,13 +17,13 @@
  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
  crossorigin=""></script>
 
- <link rel="icon" type="image/x-icon" href="birdFav.ico">
+ <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
 
 <style>
 body {
-  background-image: linear-gradient(180deg,#7bfdf942, #24933b );
+  background-image: linear-gradient(180deg,#7bfdf942, #24933a86);
 }
   
   #leaflet-map {
@@ -82,7 +82,7 @@ body {
     margin-top: -4px;
   }
 
-  #details .description,
+  #details .type,
   #details table {
     font-size: 1rem;
   }
@@ -240,6 +240,7 @@ body {
 <p></p><p></p>
 
   <div class="row filters my-2">
+
     <div class="col-md-6 col-lg-4 mb-2">
       <div class="input-group mb-2">
         <div class="input-group-prepend">
@@ -249,90 +250,54 @@ body {
       </div>
     </div>
 
-    <!--
+    
     <div class="col-md-6 col-lg-4 mb-2">
-      <label class="sr-only" for="type">Type</label>
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text">Type</div>
         </div>
-        <select class="custom-select type filter">
-          <option value="all" selected>Any</option>
+
+        <select style="width: 200px" class="custom-select type filter">
+          <option  value="all" selected>All</option>
+
+              <option value="Bird">Bird</option>
+            
+              <option value="Nest">Nest</option>
           
-            
-              <option value="Community group">Community group</option>
-            
-          
-            
-              <option value="Company/business">Company/business</option>
-            
-          
-            
-              <option value="Consultant">Consultant</option>
-            
-          
-            
-          
-            
-              <option value="Research entity">Research entity</option>
-            
-          
-            
-              <option value="School group">School group</option>
-            
-          
-            
-              <option value="Water-related project interest group">Water-related project interest group</option>
-            
-          
-            
-              <option value="Water sensitive design implementation">Water sensitive design implementation</option>
-            
-          
-            
-              <option value="Water story">Water story</option>
-            
-          
-          <option value="Other">Other</option>
         </select>
       </div>
 
     
     </div>
     <div class="col-md-6 col-lg-4 mb-2">
-      <label class="sr-only" for="aim">Aim</label>
       <div class="input-group mb-2">
         <div class="input-group-prepend">
-          <div class="input-group-text">Aim</div>
+          <div class="input-group-text">Month</div>
         </div>
-        <select class="custom-select aim filter">
-          <option value="all" selected>Any</option>
+        <select style="width: 200px" class="custom-select aim filter">
+          <option value="All">All</option>
 
+          <option value="11/23" selected>11/23</option>
+
+          <option value="12/23">12/23</option>
+
+              <option value="01/24">01/24</option>
+            
+              <option value="02/24">02/24</option>
+            
+              <option value="03/24">03/24</option>
           
+              <option value="04/24">04/24</option>
             
-              <option value="Advocacy">Advocacy</option>
-            
-          
-            
-              <option value="Education">Education</option>
-            
-          
-            
-              <option value="Infrastructure/implementation">Infrastructure/implementation</option>
-            
-          
-            
-          
-            
-              <option value="Social/Leisure">Social/Leisure</option>
-            
-          
-          <option value="Other">Other</option>
+          <option value="05/24">05/24</option>
         </select>
       </div>
     </div>
-  </div>
--->
+
+      
+      
+      </div>
+
 
   <div class="row mb-4">
     <div class="col-lg-4 pr-lg-0 mb-4 mb-lg-0">
@@ -359,7 +324,7 @@ body {
                 
               </a>
 
-              <div class="description"></div>
+              <div class="type"></div>
             </div>
 
             <div class="px-3 mb-3">
@@ -402,10 +367,10 @@ body {
 
 </div>
 
+<button type="submit" class="btn btn-lg btn-primary">Submit your sighting here!</button>
       
 <footer class="">
   
-
 <div class="container">
   <div class="row">
     <div class="col-md col-lg-8">
@@ -451,7 +416,7 @@ body {
       id: "mapbox/streets-v11",
       tileSize: 512,
       zoomOffset: -1,
-      accessToken: "pk.eyJ1IjoicGVuZ3VpbmNvbGxlY3RpdmUiLCJhIjoiY2tlOGViNmdkMHZ1dDJybWlwaTFxaXk0NiJ9.vC8i8ciFlyG0qJyzTtnLcg",
+      accessToken: "pk.eyJ1IjoiYW50Ym9ldGJydSIsImEiOiJjbHE5dzVmbDExeGI1Mm1udjc3aGswYzNmIn0.LmbkfmBBQ4iZ6v3f5YN5Pw",
   }).addTo(map);
 
 
@@ -489,24 +454,27 @@ body {
     const entry_1 = L.marker([-33.957096022743414, 18.461944479076145], {
       "icon": egg,
       "properties": {
-        "name": "XMEE",
-        "description": "18/11/23, with 1st Great Grandchicks",
+        "name": "XMEE with mate and 2 unringed fledgies",
+        "type": "Nest", 
+        "aim": "11/23",
       },
     });
   
     const entry_2 = L.marker([-33.96008424171533, 18.46023279636653], {
       "icon": bird,
       "properties": {
-        "name": "WMOY & XMGG",
-        "description": "28/11/23, collecting nesting material",
+        "name": "WMOY & XMGG, collecting nesting material",
+        "type": "Bird",
+        "aim": "11/23",
       },
     });
 
     const entry_3 = L.marker([-33.95479885219124, 18.4605345673696], {
       "icon": egg,
       "properties": {
-        "name": "RMGY",
-        "description": "29/11/23, with mate and 2 unringed fledgies",
+        "name": "RMGY with mate and 2 unringed fledgies",
+        "type": "Nest",
+        "aim": "11/23",
       },
     });
 
@@ -514,15 +482,17 @@ body {
       "icon": bird,
       "properties": {
         "name": "XMBB",
-        "description": "01/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_5 = L.marker([-33.95684311554778, 18.45982219266616], {
       "icon": egg,
       "properties": {
-        "name": "RMOV",
-        "description": "01/12/23, with 2 fledgies ",
+        "name": "RMOV with 2 fledgies",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -530,7 +500,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "WMWG",
-        "description": "01/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -538,39 +509,44 @@ body {
       "icon": bird,
       "properties": {
         "name": "XMRG & WMGY",
-        "description": "01/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_8 = L.marker([-33.957426652261596, 18.46130065073413], {
       "icon": bird,
       "properties": {
-        "name": "GMVG",
-        "description": "02/12/23, enjoying a muffin wrapper...",
+        "name": "GMVG enjoying a muffin wrapper...",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_9 = L.marker([-33.95657384178455, 18.46154432581411], {
       "icon": bird,
       "properties": {
-        "name": "XMNN & WMRR",
-        "description": "5/12/23, enjoying Bio. lectures",
+        "name": "XMNN & WMRR enjoying Bio. lectures",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_10 = L.marker([-33.956538010377386, 18.460701037470567], {
       "icon": egg,
       "properties": {
-        "name": "RMRB & GMOW",
-        "description": "09/12/23, with 3 fledglings",
+        "name": "RMRB & GMOW with 3 fledglings",
+        "type": "Nest",
+        "aim":"12/23"
       },
     });
 
     const entry_11 = L.marker([-33.95575043932574, 18.460939455234254], {
       "icon": egg,
       "properties": {
-        "name": "YMYX & BMWY",
-        "description": "09/12/23, with 2 fledglings",
+        "name": "YMYX & BMWY with 2 fledglings",
+        "type": "Nest",
+        "aim":"12/23"
       },
     });
 
@@ -578,7 +554,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "OMYB",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -586,7 +563,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "NMYY",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -594,7 +572,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "GMOP",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -602,15 +581,17 @@ body {
       "icon": bird,
       "properties": {
         "name": "RMOW",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_16 = L.marker([-33.95889249792201, 18.460423355261522], {
-      "icon": bird,
+      "icon": egg,
       "properties": {
-        "name": "XMBW (yn)",
-        "description": "09/12/23",
+        "name": "XMBW (YN)",
+        "type": "Nest",
+        "aim":"12/23"
       },
     });
 
@@ -618,7 +599,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "OMXW",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -626,7 +608,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "OMWR",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -634,7 +617,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "WMVV",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -642,7 +626,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "XMYY",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -650,7 +635,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "BMOV",
-        "description": "09/12/23",
+        'type': 'Bird',
+        'aim': '12/23'
       },
     });
 
@@ -658,7 +644,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "RMBW",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -666,7 +653,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "OMWR",
-        "description": "09/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -674,15 +662,17 @@ body {
       "icon": bird,
       "properties": {
         "name": "RMOV",
-        "description": "10/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_25 = L.marker([-33.957289421052565, 18.460738692471676], {
-      "icon": bird,
+      "icon": egg,
       "properties": {
-        "name": "M2 (YN)",
-        "description": "10/12/23, with parents",
+        "name": "M2 (YN) with parents",
+        "type": "Nest",
+        "aim":"12/23"
       },
     });
 
@@ -690,7 +680,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "YMRY",
-        "description": "10/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -698,23 +689,26 @@ body {
       "icon": bird,
       "properties": {
         "name": "WMRV",
-        "description": "13/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_28 = L.marker([-33.95704129796877, 18.461157296366196], {
-      "icon": bird,
+      "icon": egg,
       "properties": {
         "name": "XmM2 (YN)",
-        "description": "13/12/23",
+        "type": "Nest",
+        "aim":"12/23"
       },
     });
 
     const entry_29 = L.marker([-33.95539384180825, 18.46253276691855], {
       "icon": egg,
       "properties": {
-        "name": "GMOW, RMRV",
-        "description": "13/12/23, with three fledglings",
+        "name": "GMOW, RMRV with three fledglings",
+        "type": "Nest",
+        "aim":"12/23"
       },
     });
 
@@ -722,7 +716,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "GMRV",
-        "description": "13/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -730,7 +725,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "XMXX",
-        "description": "13/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -739,7 +735,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "XMEE",
-        "description": "13/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -747,7 +744,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "GMWY",
-        "description": "13/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -756,15 +754,17 @@ body {
       "icon": bird,
       "properties": {
         "name": "XMRG",
-        "description": "13/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_35 = L.marker([-33.95918039239116, 18.460733811829176], {
       "icon": egg,
       "properties": {
-        "name": "XMVV",
-        "description": "13/12/23, with two fledlings",
+        "name": "XMVV with two fledlings",
+        "type": "Nest",
+        "aim":"12/23"
       },
     });
 
@@ -773,15 +773,17 @@ body {
       "icon": bird,
       "properties": {
         "name": "OMWR",
-        "description": "13/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
     const entry_37 = L.marker([-33.9594058470075, 18.459248716465964], {
-      "icon": bird,
+      "icon": egg,
       "properties": {
-        "name": "XmKp (YN)",
-        "description": "13/12/23, with parents",
+        "name": "XmKp (YN) with parents",
+        "type": "Nest",
+        "aim":"12/23"
       },
     });
 
@@ -789,7 +791,8 @@ body {
       "icon": bird,
       "properties": {
         "name": "OMWY, XMWB, K3, K4",
-        "description": "13/12/23",
+        "type": "Bird",
+        "aim":"12/23"
       },
     });
 
@@ -798,10 +801,55 @@ body {
       "icon": unknown,
       "properties": {
         "name": "home",
-        "description": "",
+        "type": "",
       },
     });
   
+//////////////////////
+    const entry_40 = L.marker([-33.958109821681546, 18.460260880861], {
+      "icon": egg,
+      "properties": {
+        "name": "WMGV with one fledgling",
+        "type": "Nest",
+        "aim":"12/23"
+      },
+    });
+
+    const entry_41 = L.marker([-33.95885332264944, 18.459809296202508], {
+      "icon": bird,
+      "properties": {
+        "name": "BMGN",
+        "type": "Bird",
+        "aim":"12/23"
+      },
+    });
+
+    const entry_42 = L.marker([-33.95864542159745, 18.45978169620252], {
+      "icon": bird,
+      "properties": {
+        "name": "OMBO, RMGR",
+        "type": "Bird",
+        "aim":"12/23"
+      },
+    });
+
+    const entry_43 = L.marker([-33.95949402146395, 18.460141067367196], {
+      "icon": egg,
+      "properties": {
+        "name": "XmMP (YN)",
+        "type": "Nest",
+        "aim":"12/23"
+      },
+    });
+
+    const entry_44 = L.marker([-33.9581307216784, 18.462506567367093], {
+      "icon": egg,
+      "properties": {
+        "name": "Omor with a fledgling",
+        "type": "Nest",
+        "aim":"12/23"
+      },
+    });
 
   const allEntries = [
     
@@ -883,6 +931,16 @@ body {
 
       entry_39,
 
+      entry_40,
+
+      entry_41,
+
+      entry_42,
+
+      entry_43,
+
+      entry_44,
+
   ];
 
   // function when selecting a marker
@@ -892,7 +950,7 @@ body {
     $("#details").addClass("show-project").removeClass("no-results results");
 
     $(".project-details .name").text(properties.name)
-    $(".project-details .description").html(properties.description)
+    $(".project-details .type").html(properties.type)
 
     $(".project-details .type").text(properties.type)
     $(".project-details .aim").text(properties.aim)
@@ -964,13 +1022,15 @@ body {
       filteredEntries = filteredEntries.filter(entry => entry.options.properties.name.toUpperCase().includes(search.toUpperCase()));
     }
 
-    if (type != "all") {
+    if (type != "All") {
       filteredEntries = filteredEntries.filter(entry => entry.options.properties.type == type);
     }
 
-    if (aim != "all") {
+    if (aim != "All") {
       filteredEntries = filteredEntries.filter(entry => entry.options.properties.aim == aim);
     }
+
+
 
     if (filteredEntries.length > 0) {
       $("#details").removeClass("no-results show-project").addClass("results");
