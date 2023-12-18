@@ -23,7 +23,7 @@
 
 <style>
 body {
-  background-image: linear-gradient(180deg,#7bfdf942, #24933a86);
+  background-image: url('/4.png');
 }
   
   #leaflet-map {
@@ -122,117 +122,13 @@ body {
     display: none !important;
   }
 
-/*
-  .results-table tr {
-    color: #007bff;
-    cursor: pointer;
-  }
-
-  .results-table tr:hover {
-    color: #0056b3
-  }
-*/
 </style>
 
     </head>
 
-    <body>
-        
-<!--
-<nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light border-bottom sticky-top">
-  <div class="container">
-    <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id=""  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Water map</a>
-            <div class="dropdown-menu" aria-labelledby="">
-              
-<a class="dropdown-item" href="/water-map/watery-relations-museum/">Cape Town Museum of Watery Relations</a>
+    <body>     
 
-<a class="dropdown-item" href="/water-map/examples-of-water-sensitive-design-projects/">Examples of water sensitive design projects</a>
-
-            </div>
-          </li>
-          
-        
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/water-sensitive-design-training/">WSD training and events</a>
-          </li>
-          
-        
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/Projects/">Academic research projects</a>
-          </li>
-          
-        
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/contact-us/">Contact us</a>
-          </li>
-          
-        
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id=""  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
-            <div class="dropdown-menu" aria-labelledby="">
-              
-<a class="dropdown-item" href="/resources/key-concepts/">Definition of key concepts</a>
-
-<a class="dropdown-item" href="/resources/south-african-guidelines-and-policies/">South African guidelines and policies</a>
-
-<a class="dropdown-item" href="/resources/useful-websites/">Useful websites</a>
-
-            </div>
-          </li>
-          
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
--->
-        <!--
-
-<nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light border-bottom sticky-top">
-  <div class="container">
-    <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        
-      </ul>
-    </div>
-  </div>
-</nav>-->
-<!--
-            <nav class="breadcrumb-wrap" aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0 container">
-                    
-                        
-                    
-                        
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        
-                    
-                    <li class="breadcrumb-item active" aria-current="page">Water map</li>
-                </ol>
-            </nav>
-        
-        -->
-        
-
-<div class="container py-4">
+<div style="background-color: rgba(240, 248, 255, 0.3);" class="container py-4">
   
   <h2><b>Red-winged Starling sightings map</b></h2>
 
@@ -242,6 +138,7 @@ body {
   <div class="row filters my-2">
 
     <div class="col-md-6 col-lg-4 mb-2">
+      
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text">Search</div>
@@ -251,12 +148,12 @@ body {
     </div>
 
     
-    <div class="col-md-6 col-lg-4 mb-2">
+    <div class="col-md-4 col-lg-2 mb-2">
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text">Type</div>
         </div>
-        <select style="width: 200px" class="custom-select type filter">
+        <select  class="custom-select type filter">
           <option  value="all" selected>All</option>
 
               <option value="Bird">Bird</option>
@@ -267,12 +164,12 @@ body {
     </div>
 
 
-    <div class="col-md-6 col-lg-4 mb-2">
+    <div class="col-md-4 col-lg-2 mb-2">
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text">Month</div>
         </div>
-        <select style="width: 200px" class="custom-select aim filter">
+        <select  class="custom-select aim filter">
           <option value="all" selected>All</option>
 
           <option value="Nov" selected>Nov.</option>
@@ -309,7 +206,7 @@ body {
         <div class="input-group-prepend">
           <div class="input-group-text">Year</div>
         </div>
-        <select  class="custom-select year filter">
+        <select class="custom-select year filter">
           <option  value="all" selected>All</option>
 
               <option value="2023">2023</option>
