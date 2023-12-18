@@ -17,7 +17,7 @@
  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
  crossorigin=""></script>
 
- <link rel="icon" type="image/x-icon" href="birdFav.ico">
+ <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
 
@@ -246,7 +246,7 @@ body {
         <div class="input-group-prepend">
           <div class="input-group-text">Search</div>
         </div>
-        <input class="form-control search filter" type="text" name="search" placeholder="Search by ring code">
+        <input class="form-control search filter" type="text" name="search" placeholder="Search by ring code or date">
       </div>
     </div>
 
@@ -256,40 +256,70 @@ body {
         <div class="input-group-prepend">
           <div class="input-group-text">Type</div>
         </div>
-
         <select style="width: 200px" class="custom-select type filter">
           <option  value="all" selected>All</option>
 
               <option value="Bird">Bird</option>
             
               <option value="Nest">Nest</option>
-          
         </select>
       </div>
-
-    
     </div>
+
+
     <div class="col-md-6 col-lg-4 mb-2">
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text">Month</div>
         </div>
         <select style="width: 200px" class="custom-select aim filter">
-          <option value="All">All</option>
+          <option value="all" selected>All</option>
 
-          <option value="11/23" selected>11/23</option>
+          <option value="Nov" selected>Nov.</option>
 
-          <option value="12/23">12/23</option>
+          <option value="Dec">Dec.</option>
 
-              <option value="01/24">01/24</option>
+              <option value="Jan">Jan.</option>
             
-              <option value="02/24">02/24</option>
+              <option value="Feb">Feb.</option>
             
-              <option value="03/24">03/24</option>
+              <option value="Mar">Mar.</option>
           
-              <option value="04/24">04/24</option>
+              <option value="Apr">Apr.</option>
             
-          <option value="05/24">05/24</option>
+          <option value="May">May</option>
+
+          <option value="June">June</option>
+
+          <option value="July">July</option>
+
+          <option value="Aug">Aug.</option>
+
+          <option value="Sept">Sept.</option>
+
+          <option value="Oct">Oct.</option>
+
+        </select>
+      </div>
+    </div>
+
+
+    <div class="col-md-6 col-lg-4 mb-2">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Year</div>
+        </div>
+        <select  class="custom-select year filter">
+          <option  value="all" selected>All</option>
+
+              <option value="2023">2023</option>
+            
+              <option value="2024">2024</option>
+
+              <option value="2024">2025</option>
+
+              <option value="2024">2026</option>
+
         </select>
       </div>
     </div>
@@ -454,187 +484,208 @@ body {
     const entry_1 = L.marker([-33.957096022743414, 18.461944479076145], {
       "icon": egg,
       "properties": {
-        "name": "XMEE with mate and 2 unringed fledgies",
+        "name": "XMEE with mate and 2 unringed fledgies, 11/23",
         "type": "Nest", 
-        "aim": "11/23",
+        "aim": "Nov",
+        "year": "2023"
       },
     });
   
     const entry_2 = L.marker([-33.96008424171533, 18.46023279636653], {
       "icon": bird,
       "properties": {
-        "name": "WMOY & XMGG, collecting nesting material",
+        "name": "WMOY & XMGG, collecting nesting material, 11/23",
         "type": "Bird",
-        "aim": "11/23",
+        "aim": "Nov",
+        "year": "2023"
       },
     });
 
     const entry_3 = L.marker([-33.95479885219124, 18.4605345673696], {
       "icon": egg,
       "properties": {
-        "name": "RMGY with mate and 2 unringed fledgies",
+        "name": "RMGY with mate and 2 unringed fledgies, 11/23",
         "type": "Nest",
-        "aim": "11/23",
+        "aim": "Nov",
+        "year": "2023"
       },
     });
 
     const entry_4 = L.marker([-33.95563958030307, 18.460441418555686], {
       "icon": bird,
       "properties": {
-        "name": "XMBB",
+        "name": "XMBB, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_5 = L.marker([-33.95684311554778, 18.45982219266616], {
       "icon": egg,
       "properties": {
-        "name": "RMOV with 2 fledgies",
+        "name": "RMOV with 2 fledgies, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_6 = L.marker([-33.957981372201125, 18.45988289636622], {
       "icon": bird,
       "properties": {
-        "name": "WMWG",
+        "name": "WMWG, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_7 = L.marker([-33.957937485568614, 18.46200212581338], {
       "icon": bird,
       "properties": {
-        "name": "XMRG & WMGY",
+        "name": "XMRG & WMGY, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_8 = L.marker([-33.957426652261596, 18.46130065073413], {
       "icon": bird,
       "properties": {
-        "name": "GMVG enjoying a muffin wrapper...",
+        "name": "GMVG enjoying a muffin wrapper, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_9 = L.marker([-33.95657384178455, 18.46154432581411], {
       "icon": bird,
       "properties": {
-        "name": "XMNN & WMRR enjoying Bio. lectures",
+        "name": "XMNN & WMRR enjoying Bio. lectures, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_10 = L.marker([-33.956538010377386, 18.460701037470567], {
       "icon": egg,
       "properties": {
-        "name": "RMRB & GMOW with 3 fledglings",
+        "name": "RMRB & GMOW with 3 fledglings, 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_11 = L.marker([-33.95575043932574, 18.460939455234254], {
       "icon": egg,
       "properties": {
-        "name": "YMYX & BMWY with 2 fledglings",
+        "name": "YMYX & BMWY with 2 fledglings, 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_12 = L.marker([-33.95575043932574, 18.460939455234254], {
       "icon": bird,
       "properties": {
-        "name": "OMYB",
+        "name": "OMYB, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_13 = L.marker([-33.95575225690106, 18.46093616835744], {
       "icon": bird,
       "properties": {
-        "name": "NMYY",
+        "name": "NMYY, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_14 = L.marker([-33.95889249792201, 18.460423355261522], {
       "icon": bird,
       "properties": {
-        "name": "GMOP",
+        "name": "GMOP, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_15 = L.marker([-33.95889249792201, 18.460423355261522], {
       "icon": bird,
       "properties": {
-        "name": "RMOW",
+        "name": "RMOW, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_16 = L.marker([-33.95889249792201, 18.460423355261522], {
       "icon": egg,
       "properties": {
-        "name": "XMBW (YN)",
+        "name": "XMBW (YN), 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_17 = L.marker([-33.95889249792201, 18.460423355261522], {
       "icon": bird,
       "properties": {
-        "name": "OMXW",
+        "name": "OMXW, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec",
+        "year": "2023"
       },
     });
 
     const entry_18 = L.marker([-33.95889249792201, 18.460423355261522], {
       "icon": bird,
       "properties": {
-        "name": "OMWR",
+        "name": "OMWR, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                       "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_19 = L.marker([-33.95889249792201, 18.460423355261522], {
       "icon": bird,
       "properties": {
-        "name": "WMVV",
+        "name": "WMVV, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023",
+      
       },
     });
 
     const entry_20 = L.marker([-33.958285441751606, 18.460328455261262], {
       "icon": bird,
       "properties": {
-        "name": "XMYY",
+        "name": "XMYY, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_21 = L.marker([-33.958285441751606, 18.460328455261262], {
       "icon": bird,
       "properties": {
-        "name": "BMOV",
+        "name": "BMOV, 12/23",
         'type': 'Bird',
         'aim': '12/23'
       },
@@ -643,90 +694,100 @@ body {
     const entry_22 = L.marker([-33.95932368555046, 18.46045469636655], {
       "icon": bird,
       "properties": {
-        "name": "RMBW",
+        "name": "RMBW, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_23 = L.marker([-33.95932368555046, 18.46045469636655], {
       "icon": bird,
       "properties": {
-        "name": "OMWR",
+        "name": "OMWR, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_24 = L.marker([-33.956533249246924, 18.459784570025903], {
       "icon": bird,
       "properties": {
-        "name": "RMOV",
+        "name": "RMOV, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_25 = L.marker([-33.957289421052565, 18.460738692471676], {
       "icon": egg,
       "properties": {
-        "name": "M2 (YN) with parents",
+        "name": "M2 (YN) with parents, 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_26 = L.marker([-33.95777224176022, 18.4608615258141], {
       "icon": bird,
       "properties": {
-        "name": "YMRY",
+        "name": "YMRY, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_27 = L.marker([-33.95985654729932, 18.45956983194778], {
       "icon": bird,
       "properties": {
-        "name": "WMRV",
+        "name": "WMRV, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_28 = L.marker([-33.95704129796877, 18.461157296366196], {
       "icon": egg,
       "properties": {
-        "name": "XmM2 (YN)",
+        "name": "XmM2 (YN), 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_29 = L.marker([-33.95539384180825, 18.46253276691855], {
       "icon": egg,
       "properties": {
-        "name": "GMOW, RMRV with three fledglings",
+        "name": "GMOW, RMRV with three fledglings, 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_30 = L.marker([-33.95538438632981, 18.462510638693647], {
       "icon": bird,
       "properties": {
-        "name": "GMRV",
+        "name": "GMRV, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_31 = L.marker([-33.95538438632981, 18.462510638693647], {
       "icon": bird,
       "properties": {
-        "name": "XMXX",
+        "name": "XMXX, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
@@ -734,18 +795,20 @@ body {
     const entry_32 = L.marker([-33.956670711204836, 18.461870361443804], {
       "icon": bird,
       "properties": {
-        "name": "XMEE",
+        "name": "XMEE, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_33 = L.marker([-33.95737309796031, 18.462220596366198], {
       "icon": bird,
       "properties": {
-        "name": "GMWY",
+        "name": "GMWY, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
@@ -753,18 +816,20 @@ body {
     const entry_34 = L.marker([-33.95737309796031, 18.462220596366198], {
       "icon": bird,
       "properties": {
-        "name": "XMRG",
+        "name": "XMRG, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_35 = L.marker([-33.95918039239116, 18.460733811829176], {
       "icon": egg,
       "properties": {
-        "name": "XMVV with two fledlings",
+        "name": "XMVV with two fledlings, 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
@@ -772,27 +837,30 @@ body {
     const entry_36 = L.marker([-33.95918039239116, 18.460733811829176], {
       "icon": bird,
       "properties": {
-        "name": "OMWR",
+        "name": "OMWR, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_37 = L.marker([-33.9594058470075, 18.459248716465964], {
       "icon": egg,
       "properties": {
-        "name": "XmKp (YN) with parents",
+        "name": "XmKp (YN) with parents, 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_38 = L.marker([-33.95843849793216, 18.45934779636656], {
       "icon": bird,
       "properties": {
-        "name": "OMWY, XMWB, K3, K4",
+        "name": "OMWY, XMWB, K3, K4, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
@@ -802,6 +870,8 @@ body {
       "properties": {
         "name": "home",
         "type": "",
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
   
@@ -809,45 +879,50 @@ body {
     const entry_40 = L.marker([-33.958109821681546, 18.460260880861], {
       "icon": egg,
       "properties": {
-        "name": "WMGV with one fledgling",
+        "name": "WMGV with one fledgling, 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_41 = L.marker([-33.95885332264944, 18.459809296202508], {
       "icon": bird,
       "properties": {
-        "name": "BMGN",
+        "name": "BMGN, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_42 = L.marker([-33.95864542159745, 18.45978169620252], {
       "icon": bird,
       "properties": {
-        "name": "OMBO, RMGR",
+        "name": "OMBO, RMGR, 12/23",
         "type": "Bird",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_43 = L.marker([-33.95949402146395, 18.460141067367196], {
       "icon": egg,
       "properties": {
-        "name": "XmMP (YN)",
+        "name": "XmMP (YN), 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
     const entry_44 = L.marker([-33.9581307216784, 18.462506567367093], {
       "icon": egg,
       "properties": {
-        "name": "Omor with a fledgling",
+        "name": "OMOR with a fledgling, 12/23",
         "type": "Nest",
-        "aim":"12/23"
+                "aim": "Dec", 
+               "year": "2023"
       },
     });
 
@@ -950,10 +1025,10 @@ body {
     $("#details").addClass("show-project").removeClass("no-results results");
 
     $(".project-details .name").text(properties.name)
+/*
     $(".project-details .type").html(properties.type)
-
     $(".project-details .type").text(properties.type)
-    $(".project-details .aim").text(properties.aim)
+    $(".project-details .aim").text(properties.aim)*/
 
     if (properties.website_url.length > 5) {
       $(".project-details .website-url").attr("href", properties.website_url).removeAttr("hidden")
@@ -1015,6 +1090,8 @@ body {
     let search = $(".filters input.search").val()
     let type = $(".filters select.type").val()
     let aim = $(".filters select.aim").val()
+    let year = $(".filters select.year").val()
+
 
     let filteredEntries = allEntries;
 
@@ -1022,15 +1099,18 @@ body {
       filteredEntries = filteredEntries.filter(entry => entry.options.properties.name.toUpperCase().includes(search.toUpperCase()));
     }
 
-    if (type != "All") {
+    if (type != "all") {
       filteredEntries = filteredEntries.filter(entry => entry.options.properties.type == type);
     }
 
-    if (aim != "All") {
+
+    if (aim != "all") {
       filteredEntries = filteredEntries.filter(entry => entry.options.properties.aim == aim);
     }
 
-
+    if (year != "all") {
+      filteredEntries = filteredEntries.filter(entry => entry.options.properties.year == year);
+    }
 
     if (filteredEntries.length > 0) {
       $("#details").removeClass("no-results show-project").addClass("results");
